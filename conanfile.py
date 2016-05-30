@@ -4,36 +4,36 @@ from conans.tools import download
 from conans.tools import unzip
 from conans import CMake
 
-class zookeeperConan(ConanFile):
-    name = "zookeeper"
-    version = "3.4.8"
+class glogConan(ConanFile):
+    name = "glog"
+    version = "0.3.4"
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False]}
     default_options = "shared=False"
-    url="http://github.com/dwerner/conan-zookeeper"
+    url="http://github.com/dwerner/conan-glog"
     license="https://www.apache.org/licenses/LICENSE-2.0"
-    exports="FindZookeeper.cmake"
-    unzipped_name = "zookeeper-%s" % version
-    zip_name = "%s.tar.gz" % unzipped_name
+    exports="FindGlog.cmake"
+    zip_name = "v%s.tar.gz" % version
+    unzipped_name = "glog-%s" % version
 
     def source(self):
-        url = "http://apache.mirror.rafal.ca/zookeeper/%s/%s" % (self.unzipped_name, self.zip_name)  
+        url = "https://github.com/google/glog/archive/%s" % self.zip_name
         download(url, self.zip_name)
         unzip(self.zip_name)
         os.unlink(self.zip_name)
 
     def build(self):
-        self.run("cd %s/src/c && ./configure && make" % self.unzipped_name)
+        self.run("cd %s && ./configure --prefix=`pwd`/../build && make && make install" % self.unzipped_name)
 
     def package(self):
-        # Copy findzookeeper script into project
-        self.copy("FindZookeeper.cmake", ".", ".")
+        # Copy findglog script into project
+        self.copy("FindGlog.cmake", ".", ".")
 
         # Copying headers
-        self.copy(pattern="*.h", dst="include/zookeeper", src="%s/src/c/include" % self.unzipped_name, keep_path=False)
+        self.copy(pattern="*.h", dst="include", src="build/include", keep_path=True)
 
-        libdir = "%s/src/c/.libs/" % self.unzipped_name
+        libdir = "build/lib"
         # Copying static and dynamic libs
         self.copy(pattern="*.a", dst="lib", src=libdir, keep_path=False)
         self.copy(pattern="*.lib", dst="lib", src=libdir, keep_path=False)
@@ -42,4 +42,4 @@ class zookeeperConan(ConanFile):
         self.copy(pattern="*.dll", dst="bin", src=libdir, keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = ['zookeeper']
+        self.cpp_info.libs = ['glog']
