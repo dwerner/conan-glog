@@ -10,7 +10,7 @@ class glogConan(ConanFile):
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False]}
-    default_options = "shared=False"
+    default_options = "shared=True"
     url="http://github.com/dwerner/conan-glog"
     license="https://www.apache.org/licenses/LICENSE-2.0"
     exports="FindGlog.cmake"
