@@ -10,7 +10,7 @@ Download conan client from [Conan.io](https://conan.io) and run:
     
 ## Upload packages to server
 
-    $ conan upload glog/0.13.3@dwerner/testing --all
+    $ conan upload glog/0.3.4@dwerner/testing --all
     
 ## Reuse the packages
 
