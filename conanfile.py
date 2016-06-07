@@ -13,7 +13,7 @@ class glogConan(ConanFile):
     default_options = "shared=True"
     url="http://github.com/dwerner/conan-glog"
     license="https://www.apache.org/licenses/LICENSE-2.0"
-    exports="FindGlog.cmake"
+    exports="FindGlog.cmake", "change_dylib_names.sh"
     zip_name = "v%s.tar.gz" % version
     unzipped_name = "glog-%s" % version
 
