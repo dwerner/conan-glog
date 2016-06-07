@@ -7,7 +7,7 @@
 
 find_path(
 	GLOG_INCLUDE_DIR
-	NAMES glog.h
+	NAMES glog/logging.h
 	PATHS ${CONAN_INCLUDE_DIRS_GLOG}
 )
 

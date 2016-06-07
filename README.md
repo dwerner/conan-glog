@@ -1,9 +1,6 @@
-[![Build Status](https://travis-ci.org/dwerner/conan-glog.svg)](https://travis-ci.org/dwerner/conan-glog)
-
-
 # conan-glog
 
-[Conan.io](https://conan.io) package for glog library
+[Conan.io](https://conan.io) package for Google's glog logging library
 
 ## Build packages
 
@@ -13,13 +10,13 @@ Download conan client from [Conan.io](https://conan.io) and run:
     
 ## Upload packages to server
 
-    $ conan upload glog/0.13.3@dwerner/stable --all
+    $ conan upload glog/0.13.3@dwerner/testing --all
     
 ## Reuse the packages
 
 ### Basic setup
 
-    $ conan install glog/0.13.3@dwerner/stable
+    $ conan install glog/0.13.3@dwerner/testing/
     
 ### Project setup
 
