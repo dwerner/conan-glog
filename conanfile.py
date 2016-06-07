@@ -27,6 +27,10 @@ class glogConan(ConanFile):
         self.run("cd %s && ./configure --prefix=`pwd`/../build && make && make install" % self.unzipped_name)
 
     def package(self):
+
+        if self.settings.os == "Macos" and self.options.shared:
+            self.run("bash ./change_dylib_names.sh")
+
         # Copy findglog script into project
         self.copy("FindGlog.cmake", ".", ".")
 
