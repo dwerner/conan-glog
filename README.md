@@ -16,14 +16,14 @@ Download conan client from [Conan.io](https://conan.io) and run:
 
 ### Basic setup
 
-    $ conan install glog/0.13.3@dwerner/testing/
+    $ conan install glog/0.3.4@dwerner/testing/
     
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
     
     [requires]
-    glog/0.13.3@dwerner/testing
+    glog/0.3.4@dwerner/testing
 
     [options]
     glog:shared=true # false
